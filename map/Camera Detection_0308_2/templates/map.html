@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<title>now cctv</title>
+<style type="text/css">
+    h1 {
+        text-align:center;
+    }
+
+    div {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    #main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;    
+    }
+
+    #main #vmap {
+        min-height: 700px; 
+        margin-right: 10px;
+    }
+
+    #main .container {
+        display: grid;
+        grid-template-columns: repeat(3,290px);
+        grid-template-rows: repeat(2);
+        background-color: lightgray;
+        border: 1px solid #444444;
+    }
+
+    #footer {
+        margin-top: 5px; 
+        background-color: gray;
+    }
+
+</style>
+<script type="text/javascript" src="https://map.vworld.kr/js/vworldMapInit.js.do?version=2.0&apiKey=D82B542F-3C87-397A-9475-60D709302E55"></script>
+</head>
+
+<body>
+    <h1>Daejeon cctv</h1>
+    
+    <div id="main">
+        <div id="vmap" style="width:100%;height:640px;left:0px;top:0px"></div>
+
+        
+
+    <div class="container">
+        <span class="item item1"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+        <span class="item item2"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+        <span class="item item3"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+        <span class="item item4"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+        <span class="item item5"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+        <span class="item item6"><img src="{{ url_for('video_feed') }}" height="334" width="290"/></span>
+    </div>
+    </div>
+
+    <div id="footer">
+        <select id="setMode" onchange="if(this.value) location.href=(this.value);">
+            <option value="http://192.168.0.70:5000" selected>2d-map</option>
+            <option value="http://192.168.0.70:5000/sample_marker_3d">3d-map</option>
+    </div>
+
+    <script type="text/javascript">
+    
+     //2D
+        var vmap;
+        var markerLayer;
+    
+        vw.ol3.MapOptions = {
+            container : "vmap",
+            mapMode : "2d-map",
+            basemapType: vw.ol3.BasemapType.GRAPHIC,
+            controlDensity: vw.ol3.DensityType.EMPTY,
+            interactionDensity: vw.ol3.DensityType.BASIC,
+            controlsAutoArrange: true, 
+            homePosition: vw.ol3.CameraPosition,
+            initPosition: vw.ol3.CameraPosition
+        };
+    
+        vmap = new vw.ol3.Map("vmap",  vw.ol3.MapOptions);
+        markerLayer = new vw.ol3.layer.Marker(vmap);
+        vmap.addLayer(markerLayer);
+    
+        
+        vw.ol3.markerOption = {
+            x : 127.40722677,
+            y : 36.338683772,
+            epsg : "EPSG:4326",
+            title : '목중료 목중로 교통 상황',
+            contents : '목중료 목중로 교통 상황',
+            iconUrl : '//map.vworld.kr/images/ol3/marker_blue.png',
+            text : {
+            offsetX: 0.5, //위치설정
+            offsetY: 20,   //위치설정
+            font: '12px Calibri,sans-serif',
+            fill: {color: '#000'},
+            stroke: {color: '#fff', width: 2},
+            text: '테스트마커1'
+        },
+        attr: {"id":"maker01","name":"속성명1"}
+        };
+        markerLayer.addMarker(vw.ol3.markerOption);
+    
+    
+        vw.ol3.markerOption = {
+            x : 127.432103806,
+            y : 36.334423009,
+            epsg : "EPSG:4326",
+            title : '대전역',
+            contents : '대전역 교통 상황',
+            iconUrl : '//map.vworld.kr/images/ol3/marker_blue.png',
+            text : {
+            offsetX: 0.5, //위치설정
+            offsetY: 20,   //위치설정
+            font: '12px Calibri,sans-serif',
+            fill: {color: '#000'},
+            stroke: {color: '#fff', width: 2},
+            text: '테스트마커1'
+        },
+        attr: {"id":"maker02","name":"속성명2"}
+        };
+    
+        markerLayer.addMarker(vw.ol3.markerOption);
+    
+            vw.ol3.markerOption = {
+            x : 127.380181112,
+            y : 36.359443858,
+            epsg : "EPSG:4326",
+            title : '한국 플랫폼 서비스 기술',
+            contents : '<img src="{{ url_for('video_feed') }}" height="150" width="170"/>',
+            iconUrl : '//map.vworld.kr/images/ol3/marker_blue.png',
+            text : {
+            offsetX: 0.5, //위치설정
+            offsetY: 20,   //위치설정
+            font: '12px Calibri,sans-serif',
+            fill: {color: '#000'},
+            stroke: {color: '#fff', width: 2},
+            text: '테스트마커1'
+        },
+        attr: {"id":"maker02","name":"속성명2"}
+        };
+        markerLayer.addMarker(vw.ol3.markerOption);
+        </script>
+</body>
+</html>

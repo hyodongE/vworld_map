@@ -1,0 +1,29 @@
+h1 {
+    text-align:center;
+}
+
+div {
+    font-size: 30px;
+    text-align: center;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+}
+
+#main #contents {
+    min-height: 700px; 
+    background-color:#00ffff; 
+    margin-right: 10px;
+}
+
+#main #sidebar {
+    min-height: 700px; 
+    background-color: #00bfff;
+}
+
+#footer {
+    margin-top: 5px; 
+    background-color: #00bfff;
+}
