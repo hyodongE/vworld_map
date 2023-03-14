@@ -147,7 +147,30 @@
 
         for(i=0; i <= 2; i++){
             document.getElementById("write"+i).innerHTML=locate_list[i];
-        }    
+        }
+
+        var vis = true;
+
+        vmap.on("click", function(evt) {
+            var coordinate = evt.coordinate //좌표정보
+            var pixel = evt.pixel
+            var cluster_features = [];
+            var features = [];
+
+            //선택한 픽셀정보로  feature 체크
+            vmap.forEachFeatureAtPixel(pixel, function(feature, layer) {
+                // var title = feature.get("title");
+                if(vis){
+                    document.getElementById("cctv").style.display = "none";
+                    vis = false;
+                }
+                else {
+                    document.getElementById("cctv").style.display = "";
+                    vis = true;
+
+                }
+            });
+        });
         </script>
 </body>
 </html>

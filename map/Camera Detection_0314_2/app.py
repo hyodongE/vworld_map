@@ -24,6 +24,11 @@ def index():
     # return the rendered template
     return render_template("map.html")
 
+@app.route("/event")
+def index2():
+    # return the rendered template
+    return render_template("map_event.html")
+
 def stream(frameCount):
     global outputFrame, lock
     if cap.isOpened():
@@ -108,7 +113,7 @@ def map():
 if __name__ == '__main__':
     print(__name__)
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--ip", type=str, required=False, default='192.168.0.70',
+    ap.add_argument("-i", "--ip", type=str, required=False, default='192.168.0.122',
         help="ip address of the device")
     ap.add_argument("-o", "--port", type=int, required=False, default=5000, 
         help="ephemeral port number of the server (1024 to 65535)")
